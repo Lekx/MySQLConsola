@@ -5,7 +5,7 @@ namespace PracticaVIIMySQLConsola
 {
     class conexionDb
     {
-        protected MySqlConnection myConnection;
+        protected MySqlConnection miConexion;
         public conexionDb()
         {
         }
@@ -14,18 +14,18 @@ namespace PracticaVIIMySQLConsola
         {
             string connectionString =
                 "Server=localhost;" +
-                "Database=fabrica;" +
+                "Database=programacioniii;" +
                 "User ID= root;" +
                 "Password=;" +
                 "Pooling=false;";
-            this.myConnection = new MySqlConnection(connectionString);
-            this.myConnection.Open();
+            this.miConexion = new MySqlConnection(connectionString);
+            this.miConexion.Open();
         }
 
         protected void cerrarConexion()
         {
-            this.myConnection.Close();
-            this.myConnection = null;
+            this.miConexion.Close();
+            this.miConexion = null;
         }
     }
 }
