@@ -92,30 +92,36 @@ namespace PracticaVIIMySQLConsola
             if (entradaUsuario == "c" || entradaUsuario == "C")
                 return;
             else 
-            { 
-                int entradaDeUsuario;
-                if (Int32.TryParse(entradaUsuario, out entradaDeUsuario))
-                {
-                    if (this.dbApi.verificarExistencia(entradaDeUsuario)) 
-                    {
-                        string valores = "";
-                        Console.WriteLine("\t\tEditando id: " + entradaDeUsuario);
-                        Console.Write("\t\tNombre: ");
-                        valores += "nombre='" + Console.ReadLine() + "', ";
-                        Console.Write("\t\tCodigo: ");
-                        valores += "codigo='" + Console.ReadLine() + "', ";
-                        Console.Write("\t\tTelefono: ");
-                        valores += "telefono='" + Console.ReadLine() + "', ";
-                        Console.Write("\t\temail: ");
-                        valores += "email='" + Console.ReadLine() + "'";
+            {
+                Console.Write("\n\tRealmente quiere editar la tupla con el id " + entradaUsuario + " (s para continuar):");
+            string corroboracion = Console.ReadLine();
 
-                        this.dbApi.ejecutarConsulta("UPDATE persona SET " + valores + " WHERE id=" + entradaDeUsuario);
+                if (corroboracion == "s" || corroboracion == "S") 
+                { 
+                    int entradaDeUsuario;
+                    if (Int32.TryParse(entradaUsuario, out entradaDeUsuario))
+                    {
+                        if (this.dbApi.verificarExistencia(entradaDeUsuario)) 
+                        {
+                            string valores = "";
+                            Console.WriteLine("\t\tEditando id: " + entradaDeUsuario);
+                            Console.Write("\t\tNombre: ");
+                            valores += "nombre='" + Console.ReadLine() + "', ";
+                            Console.Write("\t\tCodigo: ");
+                            valores += "codigo='" + Console.ReadLine() + "', ";
+                            Console.Write("\t\tTelefono: ");
+                            valores += "telefono='" + Console.ReadLine() + "', ";
+                            Console.Write("\t\temail: ");
+                            valores += "email='" + Console.ReadLine() + "'";
+
+                            this.dbApi.ejecutarConsulta("UPDATE persona SET " + valores + " WHERE id=" + entradaDeUsuario);
+                        }
+                        else
+                            Console.WriteLine("\n\t\tEl id ingresado no existe, verifiquelo.");
                     }
                     else
-                        Console.WriteLine("\n\t\tEl id ingresado no existe, verifiquelo.");
+                        Console.WriteLine("\n\tVerifique el id que ingresó, solo se aceptan numeros enteros.");
                 }
-                else
-                    Console.WriteLine("\n\tVerifique el id que ingresó, solo se aceptan numeros enteros.");
             }
         }
 
@@ -130,16 +136,22 @@ namespace PracticaVIIMySQLConsola
                 return;
             else
             {
-                int entradaDeUsuario;
-                if (Int32.TryParse(entradaUsuario, out entradaDeUsuario))
-                {
-                    if (this.dbApi.verificarExistencia(entradaDeUsuario))
-                        this.dbApi.ejecutarConsulta("DELETE FROM persona WHERE id=" + entradaDeUsuario);
+                Console.Write("\n\tRealmente quiere editar la tupla con el id " + entradaUsuario + " (s para continuar):");
+            string corroboracion = Console.ReadLine();
+
+                if (corroboracion == "s" || corroboracion == "S") 
+                { 
+                    int entradaDeUsuario;
+                    if (Int32.TryParse(entradaUsuario, out entradaDeUsuario))
+                    {
+                        if (this.dbApi.verificarExistencia(entradaDeUsuario))
+                            this.dbApi.ejecutarConsulta("DELETE FROM persona WHERE id=" + entradaDeUsuario);
+                        else
+                            Console.WriteLine("\n\t\tEl id ingresado no existe, verifiquelo.");
+                    }
                     else
-                        Console.WriteLine("\n\t\tEl id ingresado no existe, verifiquelo.");
+                        Console.WriteLine("\n\tVerifique el id que ingresó, solo se aceptan numeros enteros.");
                 }
-                else
-                    Console.WriteLine("\n\tVerifique el id que ingresó, solo se aceptan numeros enteros.");
             }
         }
 
